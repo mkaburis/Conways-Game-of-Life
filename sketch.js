@@ -76,3 +76,26 @@ function randomFill()
         }
     }
 }
+
+function initSpaceship()
+{
+    let mid_x = N/2;
+    let mid_y = N/2;
+    
+    stateArray[mid_x - 2][mid_y -2] = 1;
+    stateArray[mid_x - 1][mid_y -2] = 1;
+    stateArray[mid_x][mid_y - 2] = 1;
+    stateArray[mid_x - 3][mid_y - 1] = 1;
+    stateArray[mid_x - 2][mid_y - 1] = 1;
+    stateArray[mid_x - 1][mid_y - 1] = 1;
+    stateArray[mid_x][mid_y - 1] = 1;
+    stateArray[mid_x + 1][mid_y - 1] = 1;
+    stateArray[mid_x - 3][mid_y] = 1;
+    stateArray[mid_x - 2][mid_y] = 1;
+    stateArray[mid_x - 1][mid_y] = 1;
+    stateArray[mid_x + 1][mid_y] = 1;
+    stateArray[mid_x + 2][mid_y] = 1;
+    stateArray[mid_x][mid_y + 1] = 1;
+    stateArray[mid_x + 1][mid_y + 1] = 1;
+    
+}
