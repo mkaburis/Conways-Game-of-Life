@@ -12,7 +12,7 @@ function setup() {
 
     stateArray = createArray(N, N);
 
-    randomFill();
+    initRandom();
     console.log(stateArray);
 
     
@@ -68,7 +68,7 @@ function createArray(colums, rows)
     return array;
 }
 
-function randomFill()
+function initRandom()
 {
     for(let i = 0; i < N; i++) {
         for(let j = 0; j < N; j++) {
