@@ -145,3 +145,14 @@ function initPulsar()
     stateArray[mid_x - 1][mid_y + 3] = 1;
     stateArray[mid_x][mid_y + 3] = 1;
 }
+
+function mousePressed()
+{
+    let x_box;
+    let y_box;
+    
+    x_box = floor(mouseX/N);
+    y_box = floor(mouseY/N);
+    
+    stateArray[x_box][y_box] = 1;
+}
