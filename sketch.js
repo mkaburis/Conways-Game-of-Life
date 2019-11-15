@@ -77,6 +77,81 @@ function randomFill()
     }
 }
 
+function conwayCellLogic (x, y)
+{
+    neighborCount = 0;
+    isLive == true;
+
+    // count cell neighbors
+    // topleft
+    if (x-1 >= 0 && y-1 >= 0) // not out of bounds
+    {
+        if (stateArray[x-1][y-1] == 1) // Cell lives?
+            neighborCount++;
+    }
+    // topCenter
+    if (y-1 >= 0) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // top right
+    if (x+1 <= MAXRIGHT && y-1 >= 0) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // left
+    if (x-1 >= 0) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // right
+    if (x+1 <= MAXRIGHT) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // bottom left
+    if (x-1 >= 0 && y+1 <= MAXDOWN) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // bottom center
+    if (y+1 <= MAXDOWN) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+    // bottom right
+    if (x+1 <= MAXRIGHT && y+1 <= MAAXDOWN) // not out of bounds
+    {
+        if (statArray[x][y-1] == 1) // cell lives?
+            neighborCount++
+    }
+
+    /**********************************
+     *  logic decision tree,          *
+     *  If cell should die, set dead  *
+     *  if cell should live, set live *
+     **********************************/
+    // if cell is dead, set tracker dead, need for logic below
+    if (!stateArray[x][y])  
+        isLive = false; 
+
+    // if neighbors < 2 or > 3, DIE
+    if (neighborCount < 2 || neighborCount > 3)
+        return false;
+    // if live and neighbor is 2 or 3, STAY LIVE
+    if (isLive && (neighbor == 2 || neighbor == 3))
+        return true;
+    // if dead and neighbors = 3, GO LIVE
+    if (isLive == false && neighbors == 3)
+        return true;
+}
+
 function initSpaceship()
 {
     let mid_x = N/2;
