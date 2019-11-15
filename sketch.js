@@ -205,7 +205,7 @@ function initPulsar()
     stateArray[mid_x + 2][mid_y - 1] = 1;
     
     stateArray[mid_x - 3][mid_y] = 1;
-    stateArray[mid_x - 2][mid_y = 1;
+    stateArray[mid_x - 2][mid_y] = 1;
     stateArray[mid_x - 1][mid_y] = 1;
     stateArray[mid_x + 1][mid_y] = 1;
     stateArray[mid_x + 2][mid_y] = 1;
