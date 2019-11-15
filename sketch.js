@@ -1,38 +1,23 @@
 
 const UNIT = 18; // each unit in the world is 18 pixels
-const N = 25; // size of grid
+const N = 50; // size of grid
 const ALIVE = 1
 const DEAD = 0
 let stateArray // a 2D array with the current states of the grid
+let canvas
 
 
 function setup() {
-    let canvas = createCanvas(1000, 500);
+    canvas = createCanvas(1100, 500);
     canvas.parent('canvas-container')
+    // centerCanvas();
 
     stateArray = createArray(N, N);
 
     initRandom();
     console.log(stateArray);
-
-    
-    
-    
-    // w = 30;
-    // // Calculate columns and rows
-    // columns = floor(width / w);
-    // rows = floor(height / w);
-    // // Wacky way to make a 2D array is JS
-    // board = new Array(columns);
-    // for (let i = 0; i < columns; i++) {
-    //   board[i] = new Array(rows);
-    // }
-    // // Going to use multiple 2D arrays and swap them
-    // next = new Array(columns);
-    // for (i = 0; i < columns; i++) {
-    //   next[i] = new Array(rows);
-    // }
 }
+
 
 function draw() {
     for(let y = 0; y < N; y++) {
