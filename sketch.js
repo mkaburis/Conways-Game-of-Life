@@ -99,3 +99,26 @@ function initSpaceship()
     stateArray[mid_x + 1][mid_y + 1] = 1;
     
 }
+
+function initBlinker()
+{
+     let mid_x = N/2; 
+     let mid_y = N/2;
+    
+    stateArray[mid_x + 2][mid_y - 1] = 1;
+    stateArray[mid_x + 2][mid_y] = 1;
+    stateArray[mid_x + 2][mid_y + 1] = 1;
+    
+    stateArray[mid_x - 2][mid_y - 1] = 1;
+    stateArray[mid_x - 2][mid_y] = 1;
+    stateArray[mid_x - 2][mid_y + 1] = 1;
+    
+    
+}
+
+function initPulsar()
+{
+     let mid_x = N/2; 
+     let mid_y = N/2;
+    
+}
