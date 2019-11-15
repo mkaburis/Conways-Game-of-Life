@@ -4,6 +4,7 @@ const N = 25; // size of grid
 const ALIVE = 1
 const DEAD = 0
 let stateArray // a 2D array with the current states of the grid
+let isRunning = false;
 
 
 function setup() {
@@ -12,12 +13,11 @@ function setup() {
 
     stateArray = createArray(N, N);
 
+    documentReady();
+
     initRandom();
     console.log(stateArray);
 
-    
-    
-    
     // w = 30;
     // // Calculate columns and rows
     // columns = floor(width / w);
@@ -221,6 +221,14 @@ function initPulsar()
     stateArray[mid_x][mid_y + 3] = 1;
 }
 
+function initBlank(){
+    for(let i = 0; i < N; i++) {
+        for(let j = 0; j < N; j++) {
+            stateArray[i][j] = 0;
+        }
+    }
+}
+
 function mousePressed()
 {
     let x_box;
@@ -230,4 +238,51 @@ function mousePressed()
     y_box = floor(mouseY/N);
     
     stateArray[x_box][y_box] = 1;
+}
+
+
+function documentReady(){
+    let startBtn = document.getElementById('startBtn');
+    let stopBtn = document.getElementById('stopBtn');
+    let stepBtn = document.getElementById('stepBtn');
+    let listOfConfigs = document.getElementById('listOfConfigs');
+
+    const configs = {
+        'Clear' : initBlank,
+        'Random' : initRandom,
+        'SpaceShip' : initSpaceship,
+        'Blinker' : initBlinker,
+        'Pulsar' : initPulsar
+    }
+
+    listOfConfigs.innerHTML = '';
+    
+    for (const key in configs) {
+
+        let option = document.createElement('option');
+        option.innerText = key;     
+        listOfConfigs.append(option);       
+    }
+
+    startBtn.addEventListener('click', () => {
+        isRunning = true;
+        // call function for stepping;
+    })
+
+    stopBtn.addEventListener('click', () => {
+        isRunning = false;
+    })
+
+    stepBtn.addEventListener('click', () => {
+        // calls function for next step
+    })
+
+    listOfConfigs.addEventListener('change', (x, y) => {
+        let index = listOfConfigs.selectedIndex;
+        let key = listOfConfigs[index].innerHTML;
+
+        initBlank();
+        configs[key]();
+    })
+
 }
