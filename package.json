@@ -1,0 +1,14 @@
+{
+  "name": "conway_gof",
+  "version": "1.0.0",
+  "description": "Conway's Game of Life Interactive Web Application ",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.1"
+  }
+}

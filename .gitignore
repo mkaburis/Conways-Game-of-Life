@@ -1,0 +1,2 @@
+# Don't track the contents of the following folders
+node_modules
