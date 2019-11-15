@@ -79,8 +79,8 @@ function randomFill()
 
 function initSpaceship()
 {
-    let mid_x = N/2;
-    let mid_y = N/2;
+    let mid_x = floor(N/2);
+    let mid_y = floor(N/2);
     
     stateArray[mid_x - 2][mid_y -2] = 1;
     stateArray[mid_x - 1][mid_y -2] = 1;
@@ -102,8 +102,8 @@ function initSpaceship()
 
 function initBlinker()
 {
-     let mid_x = N/2; 
-     let mid_y = N/2;
+     let mid_x = floor(N/2); 
+     let mid_y = floor(N/2);
     
     stateArray[mid_x + 2][mid_y - 1] = 1;
     stateArray[mid_x + 2][mid_y] = 1;
@@ -118,7 +118,30 @@ function initBlinker()
 
 function initPulsar()
 {
-     let mid_x = N/2; 
-     let mid_y = N/2;
+     let mid_x = floor(N/2); 
+     let mid_y = floor(N/2);
     
+    stateArray[mid_x - 1][mid_y - 2] = 1;
+    stateArray[mid_x][mid_y - 2] = 1;
+    stateArray[mid_x + 1][mid_y - 2] = 1;
+    
+    stateArray[mid_x - 2][mid_y - 1] = 1;
+    stateArray[mid_x][mid_y - 1] = 1;
+    stateArray[mid_x + 2][mid_y - 1] = 1;
+    
+    stateArray[mid_x - 3][mid_y] = 1;
+    stateArray[mid_x - 2][mid_y = 1;
+    stateArray[mid_x - 1][mid_y] = 1;
+    stateArray[mid_x + 1][mid_y] = 1;
+    stateArray[mid_x + 2][mid_y] = 1;
+    
+    stateArray[mid_x - 3][mid_y + 1] = 1;
+    stateArray[mid_x][mid_y + 1] = 1;
+    stateArray[mid_x + 2][mid_y + 1] = 1;
+    
+    stateArray[mid_x][mid_y + 2] = 1;
+    stateArray[mid_x + 1][mid_y + 2] = 1;
+    
+    stateArray[mid_x - 1][mid_y + 3] = 1;
+    stateArray[mid_x][mid_y + 3] = 1;
 }
