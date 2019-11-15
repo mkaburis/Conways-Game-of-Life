@@ -80,55 +80,55 @@ function initRandom()
 function conwayCellLogic (x, y)
 {
     neighborCount = 0;
-    isLive == true;
+    isLive = true;
 
     // count cell neighbors
     // topleft
     if (x-1 >= 0 && y-1 >= 0) // not out of bounds
     {
-        if (stateArray[x-1][y-1] == 1) // Cell lives?
+        if (stateArray[x-1][y-1] == ALIVE) // Cell lives?
             neighborCount++;
     }
     // topCenter
     if (y-1 >= 0) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x][y-1] == ALIVE) // cell lives?
             neighborCount++
     }
     // top right
-    if (x+1 <= MAXRIGHT && y-1 >= 0) // not out of bounds
+    if (x+1 <= N && y-1 >= 0) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x+1][y-1] == ALIVE) // cell lives?
             neighborCount++
     }
     // left
     if (x-1 >= 0) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x-1][y] == ALIVE) // cell lives?
             neighborCount++
     }
     // right
-    if (x+1 <= MAXRIGHT) // not out of bounds
+    if (x+1 <= N) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x+1][y] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom left
-    if (x-1 >= 0 && y+1 <= MAXDOWN) // not out of bounds
+    if (x-1 >= 0 && y+1 <= N) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x-1][y+1] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom center
-    if (y+1 <= MAXDOWN) // not out of bounds
+    if (y+1 <= N) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x][y+1] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom right
-    if (x+1 <= MAXRIGHT && y+1 <= MAAXDOWN) // not out of bounds
+    if (x+1 <= N && y+1 <= N) // not out of bounds
     {
-        if (statArray[x][y-1] == 1) // cell lives?
+        if (statArray[x+1][y+1] == ALIVE) // cell lives?
             neighborCount++
     }
 
