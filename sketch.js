@@ -1,39 +1,25 @@
 
 const UNIT = 18; // each unit in the world is 18 pixels
-const N = 25; // size of grid
+const N = 50; // size of grid
 const ALIVE = 1
 const DEAD = 0
 let stateArray // a 2D array with the current states of the grid
 let nextArray // 2D array which will hold next state of grid
-
+let isRunning = false;
 
 function setup() {
-    let canvas = createCanvas(1000, 500);
+    canvas = createCanvas(1100, 500);
     canvas.parent('canvas-container')
+    // centerCanvas();
 
     stateArray = createArray(N, N);
 
-    randomFill();
-    console.log(stateArray);
+    documentReady();
 
-    
-    
-    
-    // w = 30;
-    // // Calculate columns and rows
-    // columns = floor(width / w);
-    // rows = floor(height / w);
-    // // Wacky way to make a 2D array is JS
-    // board = new Array(columns);
-    // for (let i = 0; i < columns; i++) {
-    //   board[i] = new Array(rows);
-    // }
-    // // Going to use multiple 2D arrays and swap them
-    // next = new Array(columns);
-    // for (i = 0; i < columns; i++) {
-    //   next[i] = new Array(rows);
-    // }
+    initRandom();
+    console.log(stateArray);
 }
+
 
 function draw() {
     for(let y = 0; y < N; y++) {
@@ -69,7 +55,7 @@ function createArray(colums, rows)
     return array;
 }
 
-function randomFill()
+function initRandom()
 {
     for(let i = 0; i < N; i++) {
         for(let j = 0; j < N; j++) {
@@ -170,8 +156,8 @@ function runAutomaton ()
 
 function initSpaceship()
 {
-    let mid_x = N/2;
-    let mid_y = N/2;
+    let mid_x = floor(N/2);
+    let mid_y = floor(N/2);
     
     stateArray[mid_x - 2][mid_y -2] = 1;
     stateArray[mid_x - 1][mid_y -2] = 1;
@@ -189,4 +175,116 @@ function initSpaceship()
     stateArray[mid_x][mid_y + 1] = 1;
     stateArray[mid_x + 1][mid_y + 1] = 1;
     
+}
+
+function initBlinker()
+{
+     let mid_x = floor(N/2); 
+     let mid_y = floor(N/2);
+    
+    stateArray[mid_x + 2][mid_y - 1] = 1;
+    stateArray[mid_x + 2][mid_y] = 1;
+    stateArray[mid_x + 2][mid_y + 1] = 1;
+    
+    stateArray[mid_x - 2][mid_y - 1] = 1;
+    stateArray[mid_x - 2][mid_y] = 1;
+    stateArray[mid_x - 2][mid_y + 1] = 1;
+    
+    
+}
+
+function initPulsar()
+{
+     let mid_x = floor(N/2); 
+     let mid_y = floor(N/2);
+    
+    stateArray[mid_x - 1][mid_y - 2] = 1;
+    stateArray[mid_x][mid_y - 2] = 1;
+    stateArray[mid_x + 1][mid_y - 2] = 1;
+    
+    stateArray[mid_x - 2][mid_y - 1] = 1;
+    stateArray[mid_x][mid_y - 1] = 1;
+    stateArray[mid_x + 2][mid_y - 1] = 1;
+    
+    stateArray[mid_x - 3][mid_y] = 1;
+    stateArray[mid_x - 2][mid_y] = 1;
+    stateArray[mid_x - 1][mid_y] = 1;
+    stateArray[mid_x + 1][mid_y] = 1;
+    stateArray[mid_x + 2][mid_y] = 1;
+    
+    stateArray[mid_x - 3][mid_y + 1] = 1;
+    stateArray[mid_x][mid_y + 1] = 1;
+    stateArray[mid_x + 2][mid_y + 1] = 1;
+    
+    stateArray[mid_x][mid_y + 2] = 1;
+    stateArray[mid_x + 1][mid_y + 2] = 1;
+    
+    stateArray[mid_x - 1][mid_y + 3] = 1;
+    stateArray[mid_x][mid_y + 3] = 1;
+}
+
+function initBlank(){
+    for(let i = 0; i < N; i++) {
+        for(let j = 0; j < N; j++) {
+            stateArray[i][j] = 0;
+        }
+    }
+}
+
+function mousePressed()
+{
+    let x_box;
+    let y_box;
+    
+    x_box = floor(mouseX/N);
+    y_box = floor(mouseY/N);
+    
+    stateArray[x_box][y_box] = 1;
+}
+
+
+function documentReady(){
+    let startBtn = document.getElementById('startBtn');
+    let stopBtn = document.getElementById('stopBtn');
+    let stepBtn = document.getElementById('stepBtn');
+    let listOfConfigs = document.getElementById('listOfConfigs');
+
+    const configs = {
+        'Clear' : initBlank,
+        'Random' : initRandom,
+        'SpaceShip' : initSpaceship,
+        'Blinker' : initBlinker,
+        'Pulsar' : initPulsar
+    }
+
+    listOfConfigs.innerHTML = '';
+    
+    for (const key in configs) {
+
+        let option = document.createElement('option');
+        option.innerText = key;     
+        listOfConfigs.append(option);       
+    }
+
+    startBtn.addEventListener('click', () => {
+        isRunning = true;
+        // call function for stepping;
+    })
+
+    stopBtn.addEventListener('click', () => {
+        isRunning = false;
+    })
+
+    stepBtn.addEventListener('click', () => {
+        // calls function for next step
+    })
+
+    listOfConfigs.addEventListener('change', (x, y) => {
+        let index = listOfConfigs.selectedIndex;
+        let key = listOfConfigs[index].innerHTML;
+
+        initBlank();
+        configs[key]();
+    })
+
 }

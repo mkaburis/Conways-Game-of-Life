@@ -4,18 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Conway's Game of Life Visualizer</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(85, 85, 85) !important
-        }
-
-        canvas {
-            width: 100%;
-            height: 90%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="p5.min.js"></script>
     <script src="sketch.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,24 +24,22 @@
     <div class="container">
         <div class="col mx-auto">
             <div class="mx-auto" id="canvas-container"></div>
-
             <div class="card text-white bg-dark mb-3">
                 <div class="card-body">
                     <div class="row text-center">
                             <div class="col-5">
-                                    <button type="button" class="btn btn-success mx-3">Start</button>
-                                    <button type="button" class="btn btn-danger mx-3">Pause</button>
-                                    <button type="button" class="btn btn-light mx-3">Step</button>
+                                    <button type="button" class="btn btn-success mx-3" id="startBtn">Start</button>
+                                    <button type="button" class="btn btn-danger mx-3" id="stopBtn">Pause</button>
+                                    <button type="button" class="btn btn-light mx-3" id="stepBtn">Step</button>
                             </div>                            
                             <div class="col-3">
                                 <div class="form-group mx-3">
-                                    <label for="exampleFormControlSelect1">Load Configuration</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    <label for="listOfConfigs">Load Configuration</label>
+                                    <select class="form-control" id="listOfConfigs">
                                         <option>"Random"</option>
                                         <option>"Spaceship"</option>
                                         <option>"Blinker"</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>"Pulsar"</option>
                                     </select>
                                 </div>
                             </div>
