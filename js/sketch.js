@@ -1,12 +1,8 @@
-
 const UNIT = 18; // each unit in the world is 18 pixels
 const N = 50; // size of grid
-const ALIVE = 1
-const DEAD = 0
 let stateArray // a 2D array with the current states of the grid
 let nextArray // 2D array which will hold next state of grid
 let isRunning = false;
-let interval;
 
 function setup() {
     canvas = createCanvas(1100, 500);
@@ -32,8 +28,7 @@ function draw() {
                 fill(0, 103, 71)
                 stroke(0, 103, 71)
                 rect(xloc, yloc, UNIT, UNIT)
-            }
-            else {
+            } else {
                 fill(255)
                 stroke(0, 103, 71)
                 rect(xloc, yloc, UNIT, UNIT)
@@ -56,8 +51,8 @@ function mousePressed() {
     let x_box;
     let y_box;
 
-    x_box = floor(mouseX / N);
-    y_box = floor(mouseY / N);
+    x_box = floor(mouseX / UNIT);
+    y_box = floor(mouseY / UNIT);
 
     stateArray[x_box][y_box] = 1;
 }
@@ -81,7 +76,6 @@ function documentReady() {
     listOfConfigs.innerHTML = '';
 
     for (const key in configs) {
-
         let option = document.createElement('option');
         option.innerText = key;
         listOfConfigs.append(option);
@@ -89,27 +83,22 @@ function documentReady() {
 
     startBtn.addEventListener('click', () => {
         isRunning = true;
-        // changes state every 3 seconds until stopped
-        interval = setInterval(() => {
-            if(isRunning) {
-                runAutomaton();
-            }
-        }, 2500)
+
+        interval = setInterval(automataCore, 1000)
     })
 
     stopBtn.addEventListener('click', () => {
-        clearInterval(interval);
         isRunning = false;
     })
 
     stepBtn.addEventListener('click', () => {
-        clearInterval(interval);
-        isRunning = false;        
-        runAutomaton();
+        isRunning = false;
+        automataCore(true);
     })
 
-    listOfConfigs.addEventListener('change', (x, y) => {
+    listOfConfigs.addEventListener('change', () => {
         isRunning = false;
+        document.getElementById('generation').innerText = 0;
         let index = listOfConfigs.selectedIndex;
         let key = listOfConfigs[index].innerHTML;
 

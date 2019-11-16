@@ -1,10 +1,6 @@
-function initRandom() {
-    for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
-            stateArray[i][j] = floor(random(2))
-        }
-    }
-}
+const ALIVE = 1
+const DEAD = 0
+let interval;
 
 function conwayCellLogic(x, y) {
     neighborCount = 0;
@@ -54,10 +50,10 @@ function conwayCellLogic(x, y) {
         }
 
         /**********************************
-        *  logic decision tree,          *
-        *  If cell should die, set dead  *
-        *  if cell should live, set live *
-        **********************************/
+         *  logic decision tree,          *
+         *  If cell should die, set dead  *
+         *  if cell should live, set live *
+         **********************************/
         // if cell is dead, set tracker dead, need for logic below
         if (!stateArray[x][y])
             isLive = false;
@@ -78,6 +74,16 @@ function conwayCellLogic(x, y) {
 
 }
 
+function automataCore(isStep) {
+    if (isRunning || isStep) {
+        runAutomaton();
+        incrementGeneration();
+    } 
+    if(isStep || !isRunning) {
+        clearInterval(interval);
+    }
+}
+
 function runAutomaton() {
     for (let i = 0; i < N; i++) {
         for (let j = 0; j < N; j++) {
@@ -89,6 +95,60 @@ function runAutomaton() {
     // make state array be equal to next array values
     stateArray = nextArray;
     draw();
+}
+
+function incrementGeneration() {
+    let x = parseInt(document.getElementById('generation').innerHTML);
+    document.getElementById('generation').innerText = ++x;
+}
+
+function calculateNeighbors(x, y) { //Takes in x, y of cell and checks all neighbors
+    let neighborCount = 0;
+
+    for (let i = -1; i < 2; i++) {
+        for (let j = -1; j < 2; j++) {
+            let col = (x + i + N) % N; // change N to cols
+            let row = (y + j + N) % N; // change N to rows
+            neighborCount += 1;
+        }
+    }
+    neighborCount -= [x][y]; //Remove count of itself becasue not included in neighbors
+    return neighborCount;
+}
+
+function calculateNextBoard() {
+    let newBoard = createArray(N, N); //cols, rows
+
+    for (let i = 0; i < N; i++) {
+        for (let j = 0; j < N; j++) {
+            let currentState = stateArray[i][j];
+
+            let val = 0;
+            let neighborCount = calculateNeighbors(i, j);
+
+            if (currentState == DEAD && neighborCount == 3) {
+                newBoard[i][j] = ALIVE;
+            } else if (currentState == ALIVE && (neighborCount < 2 || neighborCount > 3)) {
+                newBoard[i][j] = DEAD;
+            } else {
+                newBoard[i][j] = currentState;
+            }
+        }
+    }
+
+    stateArray = newBoard;
+    console.log(stateArray)
+}
+
+/****************************/
+/*  initialization methods  */
+/****************************/
+function initRandom() {
+    for (let i = 0; i < N; i++) {
+        for (let j = 0; j < N; j++) {
+            stateArray[i][j] = floor(random(2))
+        }
+    }
 }
 
 function initSpaceship() {
