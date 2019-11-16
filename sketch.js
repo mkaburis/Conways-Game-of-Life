@@ -4,8 +4,8 @@ const N = 50; // size of grid
 const ALIVE = 1
 const DEAD = 0
 let stateArray // a 2D array with the current states of the grid
+let nextArray // 2D array which will hold next state of grid
 let isRunning = false;
-
 
 function setup() {
     canvas = createCanvas(1100, 500);
@@ -123,13 +123,28 @@ function conwayCellLogic(x, y) {
 
     // if neighbors < 2 or > 3, DIE
     if (neighborCount < 2 || neighborCount > 3)
-        return false;
+        return DEAD;
     // if live and neighbor is 2 or 3, STAY LIVE
     if (isLive && (neighbor == 2 || neighbor == 3))
-        return true;
+        return ALIVE;
     // if dead and neighbors = 3, GO LIVE
     if (isLive == false && neighbors == 3)
-        return true;
+        return ALIVE;
+}
+
+function runAutomaton ()
+{
+    for (let i = 0; i < N; i++)
+    {
+        for (let j = 0; j < N; j++)
+        {
+            // get the next array values
+            nextArray[i][j] = conwayCellLogic(i, j);
+        }
+    }
+ 
+    // make state array be equal to next array values
+    stateArray = nextArray;
 }
 
 function initSpaceship() {
