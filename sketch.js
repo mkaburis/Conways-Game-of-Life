@@ -236,8 +236,8 @@ function calculateNeighbors(x, y)  //Takes in x, y of cell and checks all neighb
     {
        for(let j = -1; j < 2; j++)
        {
-           let col = (x + i + cols) % cols;
-           let row = (y + j + rows) % rows;
+           let col = (x + i + N) % N; // change N to cols
+           let row = (y + j + N) % N; // change N to rows
            neighborCount += 1;
        }
     }
@@ -258,13 +258,13 @@ function calculateNextBoard()
             let val = 0;
             let neighborCount = calculateNeighbors(i, j);
             
-            if(currentState == Dead && neighborCount == 3)
+            if(currentState == DEAD && neighborCount == 3)
             {
-               newBoard[i][j] = Alive;
+               newBoard[i][j] = ALIVE;
             }
-            else if(currentState == Alive && (neighborCount < 2 || neighborCount > 3))
+            else if(currentState == ALIVE && (neighborCount < 2 || neighborCount > 3))
             {
-                newBoard[i][j] = Dead;
+                newBoard[i][j] = DEAD;
             }
             else
             {
@@ -274,12 +274,19 @@ function calculateNextBoard()
     }
     
     stateArray = newBoard;
+    console.log(stateArray)
+}
+
+function incrementGeneration(){
+    let x = parseInt(document.getElementById('generation').innerHTML);
+    x += 1;
+    document.getElementById('generation').innerHTML = x.toString(); 
 }
 
 function documentReady() {
     let startBtn = document.getElementById('startBtn');
     let stopBtn = document.getElementById('stopBtn');
-    let stepBtn = document.getElementById('stepBtn');
+    let stepBtn = document.getElementById('stepBtn'); 
     let listOfConfigs = document.getElementById('listOfConfigs');
 
     const configs = {
@@ -302,10 +309,20 @@ function documentReady() {
 
     startBtn.addEventListener('click', () => {
         isRunning = true;
-        // call function for stepping;
-        while(isRunning){
-            runAutomaton();
+
+        function automataCore(){
+            if(isRunning){
+                incrementGeneration();
+                runAutomaton();
+            }
+
+            else{
+                clearInterval(interval)
+            }
         }
+
+        // Every automaton move occurs in 1sec intervals
+        let interval = setInterval(automataCore, 1000)
     })
 
     stopBtn.addEventListener('click', () => {
@@ -314,11 +331,13 @@ function documentReady() {
 
     stepBtn.addEventListener('click', () => {
         isRunning = false;
-        runAutomaton() ;
+        incrementGeneration();s
+        runAutomaton();
     })
 
     listOfConfigs.addEventListener('change', (x, y) => {
         isRunning = false;
+        document.getElementById('generation').innerHTML = '0';
         let index = listOfConfigs.selectedIndex;
         let key = listOfConfigs[index].innerHTML;
 
@@ -327,3 +346,5 @@ function documentReady() {
     })
 
 }
+
+
