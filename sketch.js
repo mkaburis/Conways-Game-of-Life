@@ -222,8 +222,8 @@ function mousePressed() {
     let x_box;
     let y_box;
 
-    x_box = floor(mouseX / N);
-    y_box = floor(mouseY / N);
+    x_box = floor(mouseX / Unit);
+    y_box = floor(mouseY / Unit);
 
     stateArray[x_box][y_box] = 1;
 }
