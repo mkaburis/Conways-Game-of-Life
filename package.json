@@ -4,11 +4,24 @@
   "description": "Conway's Game of Life Interactive Web Application ",
   "main": "index.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron js\\main.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^7.1.1"
-  }
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "p5": "^0.10.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkaburis/Conways-Game-of-Life.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mkaburis/Conways-Game-of-Life/issues"
+  },
+  "homepage": "https://github.com/mkaburis/Conways-Game-of-Life#readme"
 }

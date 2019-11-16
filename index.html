@@ -4,55 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Conway's Game of Life Visualizer</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="p5.min.js"></script>
-    <script src="sketch.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/p5.min.js"></script>
+
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <div class="container">
         <div class="col mx-auto">
-            <div class="mx-auto" id="canvas-container"></div>
+            <div class="mx-auto mt-3" id="canvas-container"></div>
             <div class="card text-white bg-dark mb-3">
                 <div class="card-body">
                     <div class="row text-center">
-                            <div class="col-5">
-                                    <button type="button" class="btn btn-success mx-3" id="startBtn">Start</button>
-                                    <button type="button" class="btn btn-danger mx-3" id="stopBtn">Pause</button>
-                                    <button type="button" class="btn btn-light mx-3" id="stepBtn">Step</button>
-                            </div>                            
-                            <div class="col-3">
-                                <div class="form-group mx-3">
-                                    <label for="listOfConfigs">Load Configuration</label>
-                                    <select class="form-control" id="listOfConfigs">
-                                        <option>"Random"</option>
-                                        <option>"Spaceship"</option>
-                                        <option>"Blinker"</option>
-                                        <option>"Pulsar"</option>
-                                    </select>
-                                </div>
+                        <div class="col-5">
+                            <button type="button" class="btn btn-success mx-3" id="startBtn">Start</button>
+                            <button type="button" class="btn btn-danger mx-3" id="stopBtn">Pause</button>
+                            <button type="button" class="btn btn-light mx-3" id="stepBtn">Step</button>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group mx-3">
+                                <label for="listOfConfigs">Load Configuration</label>
+                                <select class="form-control" id="listOfConfigs">
+                                    <option>"Random"</option>
+                                    <option>"Spaceship"</option>
+                                    <option>"Blinker"</option>
+                                    <option>"Pulsar"</option>
+                                </select>
                             </div>
-                            <div class="col-4">
-                                    <input type="text" class="form-controls ml-4 mr-2" id="dirName" placeholder="Grid Size">
-                                    <button type="button" class="btn btn-warning">Resize Grid</button>
-                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-controls ml-4 mr-2" id="dirName" placeholder="Grid Size">
+                            <button type="button" class="btn btn-warning">Resize Grid</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+
+    <script src="js/automata.js"></script>
+    <script src="js/sketch.js"></script>
+
 
 </body>
 
