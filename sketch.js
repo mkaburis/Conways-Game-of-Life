@@ -228,6 +228,53 @@ function mousePressed() {
     stateArray[x_box][y_box] = 1;
 }
 
+function calculateNeighbors(x, y)  //Takes in x, y of cell and checks all neighbors
+{
+    let neighborCount = 0;
+    
+    for(let i = -1; i < 2; i++)
+    {
+       for(let j = -1; j < 2; j++)
+       {
+           let col = (x + i + cols) % cols;
+           let row = (y + j + rows) % rows;
+           neighborCount += 1;
+       }
+    }
+    neighborCount -= [x][y];  //Remove count of itself becasue not included in neighbors
+    return neighborCount;
+}
+
+function calculateNextBoard()
+{
+    let newBoard = createArray(N, N); //cols, rows
+    
+    for(let i = 0; i < N; i++)
+    {
+        for(let j = 0; j < N ; j++)
+        {
+             let currentState = stateArray[i][j];
+            
+            let val = 0;
+            let neighborCount = calculateNeighbors(i, j);
+            
+            if(currentState == Dead && neighborCount == 3)
+            {
+               newBoard[i][j] = Alive;
+            }
+            else if(currentState == Alive && (neighborCount < 2 || neighborCount > 3))
+            {
+                newBoard[i][j] = Dead;
+            }
+            else
+            {
+                newBoard[i][j] = currentState;
+            }
+        }
+    }
+    
+    stateArray = newBoard;
+}
 
 function documentReady() {
     let startBtn = document.getElementById('startBtn');
