@@ -13,6 +13,7 @@ function setup() {
     // centerCanvas();
 
     stateArray = createArray(N, N);
+    nextArray = createArray(N, N);
 
     documentReady();
 
@@ -62,53 +63,46 @@ function conwayCellLogic(x, y) {
     neighborCount = 0;
     isLive = true;
 
-    // count cell neighbors
+    try {
+        // count cell neighbors
     // topleft
-    if (x - 1 >= 0 && y - 1 >= 0) // not out of bounds
-    {
+    if (x - 1 >= 0 && y - 1 >= 0) { // not out of bounds
         if (stateArray[x - 1][y - 1] == ALIVE) // Cell lives?
             neighborCount++;
     }
     // topCenter
-    if (y - 1 >= 0) // not out of bounds
-    {
-        if (statArray[x][y - 1] == ALIVE) // cell lives?
+    if (y - 1 >= 0) { // not out of bounds
+        if (stateArray[x][y - 1] == ALIVE) // cell lives?
             neighborCount++
     }
     // top right
-    if (x + 1 <= N && y - 1 >= 0) // not out of bounds
-    {
-        if (statArray[x + 1][y - 1] == ALIVE) // cell lives?
+    if (x + 1 < N && y - 1 >= 0) { // not out of bounds
+        if (stateArray[x + 1][y - 1] == ALIVE) // cell lives?
             neighborCount++
     }
     // left
-    if (x - 1 >= 0) // not out of bounds
-    {
-        if (statArray[x - 1][y] == ALIVE) // cell lives?
+    if (x - 1 >= 0) { // not out of bounds
+        if (stateArray[x - 1][y] == ALIVE) // cell lives?
             neighborCount++
     }
     // right
-    if (x + 1 <= N) // not out of bounds
-    {
-        if (statArray[x + 1][y] == ALIVE) // cell lives?
+    if (x + 1 < N) { // not out of bounds
+        if (stateArray[x + 1][y] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom left
-    if (x - 1 >= 0 && y + 1 <= N) // not out of bounds
-    {
-        if (statArray[x - 1][y + 1] == ALIVE) // cell lives?
+    if (x - 1 >= 0 && y + 1 < N) { // not out of bounds
+        if (stateArray[x - 1][y + 1] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom center
-    if (y + 1 <= N) // not out of bounds
-    {
-        if (statArray[x][y + 1] == ALIVE) // cell lives?
+    if (y + 1 < N) { // not out of bounds
+        if (stateArray[x][y + 1] == ALIVE) // cell lives?
             neighborCount++
     }
     // bottom right
-    if (x + 1 <= N && y + 1 <= N) // not out of bounds
-    {
-        if (statArray[x + 1][y + 1] == ALIVE) // cell lives?
+    if (x + 1 < N && y + 1 < N) { // not out of bounds
+        if (stateArray[x + 1][y + 1] == ALIVE) // cell lives?
             neighborCount++
     }
 
@@ -125,26 +119,29 @@ function conwayCellLogic(x, y) {
     if (neighborCount < 2 || neighborCount > 3)
         return DEAD;
     // if live and neighbor is 2 or 3, STAY LIVE
-    if (isLive && (neighbor == 2 || neighbor == 3))
+    if (isLive && (neighborCount == 2 || neighborCount == 3))
         return ALIVE;
     // if dead and neighbors = 3, GO LIVE
-    if (isLive == false && neighbors == 3)
+    if (isLive == false && neighborCount == 3)
         return ALIVE;
+    } catch (error) {
+        console.log(error)
+    }
+
+    
 }
 
-function runAutomaton ()
-{
-    for (let i = 0; i < N; i++)
-    {
-        for (let j = 0; j < N; j++)
-        {
+function runAutomaton() {
+    for (let i = 0; i < N; i++) {
+        for (let j = 0; j < N; j++) {
             // get the next array values
             nextArray[i][j] = conwayCellLogic(i, j);
         }
     }
- 
+
     // make state array be equal to next array values
     stateArray = nextArray;
+    draw();
 }
 
 function initSpaceship() {
@@ -239,6 +236,7 @@ function documentReady() {
     let listOfConfigs = document.getElementById('listOfConfigs');
 
     const configs = {
+        '' : '',
         'Clear': initBlank,
         'Random': initRandom,
         'SpaceShip': initSpaceship,
@@ -258,6 +256,9 @@ function documentReady() {
     startBtn.addEventListener('click', () => {
         isRunning = true;
         // call function for stepping;
+        while(isRunning){
+            runAutomaton();
+        }
     })
 
     stopBtn.addEventListener('click', () => {
@@ -265,7 +266,8 @@ function documentReady() {
     })
 
     stepBtn.addEventListener('click', () => {
-        // calls function for next step
+        isRunning = false;
+        runAutomaton() ;
     })
 
     listOfConfigs.addEventListener('change', (x, y) => {
