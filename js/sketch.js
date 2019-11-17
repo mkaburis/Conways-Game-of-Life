@@ -111,39 +111,10 @@ function documentReady() {
         isRunning = false;
         let input = parseInt(document.getElementById('gridRange').value);
         console.log(input)
-        switch(input)
-        {
-            case 0:
-                UNIT = unit_Arr[0];
-                N = N_Arr[0];
-                M = M_Arr[0];
-                break;
+        UNIT = unit_Arr[input];
+        N = N_Arr[input];
+        M = M_Arr[input];
 
-            case 1:
-                UNIT = unit_Arr[1];
-                N = N_Arr[1];
-                M = M_Arr[1];
-                break;
-
-            case 2: 
-                UNIT = unit_Arr[2];
-                N = N_Arr[2];
-                M = M_Arr[2];
-                break;
-
-            case 3:
-                UNIT = unit_Arr[3];
-                N = N_Arr[3];
-                M = M_Arr[3];
-                break;
-            
-            case 4:
-                UNIT = unit_Arr[4];
-                N = N_Arr[4];
-                M = M_Arr[4];
-                break;
-        }
-        console.log(UNIT)
         resetGrid();
     })
 
