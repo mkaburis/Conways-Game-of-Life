@@ -84,7 +84,7 @@ function automataCore(isStep) {
     }
 }
 
-function runAutomaton() {
+/*function runAutomaton() {
     for (let i = 0; i < N; i++) {
         for (let j = 0; j < N; j++) {
             // get the next array values
@@ -95,6 +95,10 @@ function runAutomaton() {
     // make state array be equal to next array values
     stateArray = nextArray;
     draw();
+}*/
+
+function runAutomaton() {
+    calculateNextBoard();
 }
 
 function incrementGeneration() {
@@ -108,19 +112,19 @@ function calculateNeighbors(x, y) { //Takes in x, y of cell and checks all neigh
     for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
             let col = (x + i + N) % N; // change N to cols
-            let row = (y + j + N) % N; // change N to rows
-            neighborCount += 1;
+            let row = (y + j + M) % M; // change N to rows
+            neighborCount += stateArray[col][row];
         }
     }
-    neighborCount -= [x][y]; //Remove count of itself becasue not included in neighbors
+    neighborCount -= stateArray[x][y]; //Remove count of itself becasue not included in neighbors
     return neighborCount;
 }
 
 function calculateNextBoard() {
-    let newBoard = createArray(N, N); //cols, rows
+    let newBoard = createArray(N, M); //cols, rows
 
     for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
+        for (let j = 0; j < M; j++) {
             let currentState = stateArray[i][j];
 
             let val = 0;
@@ -137,7 +141,7 @@ function calculateNextBoard() {
     }
 
     stateArray = newBoard;
-    console.log(stateArray)
+    draw();
 }
 
 /****************************/
