@@ -1,25 +1,34 @@
-const UNIT = 18; // each unit in the world is 18 pixels
-const N = 50; // size of grid
+const CANVAS_WIDTH = 1080;
+const CANVAS_HEIGHT = 756; 
+let unit_Arr = [9, 18, 27, 36, 54];
+let N_Arr = [120, 60, 40, 30, 20]
+let M_Arr = [84, 42, 28, 21, 14]
+let UNIT = unit_Arr[1]; // each unit in the world is 18 pixels
+let N = N_Arr[1]; // size of x_grid
+let M = M_Arr[1]; // size of y_grid
 let stateArray // a 2D array with the current states of the grid
 let nextArray // 2D array which will hold next state of grid
 let isRunning = false;
 
-function setup() {
-    canvas = createCanvas(1100, 500);
-    canvas.parent('canvas-container')
-    // centerCanvas();
 
-    stateArray = createArray(N, N);
-    nextArray = createArray(N, N);
+function setup() {
+    canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+    canvas.parent('canvas-container')
+    resetGrid();
+
+}
+
+function resetGrid() {
+    stateArray = createArray(N, M);
+    nextArray = createArray(N, M);
 
     documentReady();
 
     initRandom();
-    //console.log(stateArray);
 }
 
 function draw() {
-    for (let y = 0; y < N; y++) {
+    for (let y = 0; y < M; y++) {
         for (let x = 0; x < N; x++) {
             let xloc = x * UNIT;
             let yloc = y * UNIT;
@@ -58,6 +67,8 @@ function mousePressed() {
 }
 
 
+
+
 function documentReady() {
     let startBtn = document.getElementById('startBtn');
     let stopBtn = document.getElementById('stopBtn');
@@ -94,6 +105,46 @@ function documentReady() {
     stepBtn.addEventListener('click', () => {
         isRunning = false;
         automataCore(true);
+    })
+
+    gridRange.addEventListener('change', () =>{
+        isRunning = false;
+        let input = parseInt(document.getElementById('gridRange').value);
+        console.log(input)
+        switch(input)
+        {
+            case 0:
+                UNIT = unit_Arr[0];
+                N = N_Arr[0];
+                M = M_Arr[0];
+                break;
+
+            case 1:
+                UNIT = unit_Arr[1];
+                N = N_Arr[1];
+                M = M_Arr[1];
+                break;
+
+            case 2: 
+                UNIT = unit_Arr[2];
+                N = N_Arr[2];
+                M = M_Arr[2];
+                break;
+
+            case 3:
+                UNIT = unit_Arr[3];
+                N = N_Arr[3];
+                M = M_Arr[3];
+                break;
+            
+            case 4:
+                UNIT = unit_Arr[4];
+                N = N_Arr[4];
+                M = M_Arr[4];
+                break;
+        }
+        console.log(UNIT)
+        resetGrid();
     })
 
     listOfConfigs.addEventListener('change', () => {
