@@ -84,18 +84,6 @@ function automataCore(isStep) {
     }
 }
 
-/*function runAutomaton() {
-    for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
-            // get the next array values
-            nextArray[i][j] = conwayCellLogic(i, j);
-        }
-    }
-
-    // make state array be equal to next array values
-    stateArray = nextArray;
-    draw();
-}*/
 
 function runAutomaton() {
     calculateNextBoard();
@@ -149,7 +137,7 @@ function calculateNextBoard() {
 /****************************/
 function initRandom() {
     for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
+        for (let j = 0; j < M; j++) {
             stateArray[i][j] = floor(random(2))
         }
     }
@@ -157,7 +145,7 @@ function initRandom() {
 
 function initSpaceship() {
     let mid_x = floor(N / 2);
-    let mid_y = floor(N / 2);
+    let mid_y = floor(M / 2);
 
     stateArray[mid_x - 2][mid_y - 2] = 1;
     stateArray[mid_x - 1][mid_y - 2] = 1;
@@ -179,7 +167,7 @@ function initSpaceship() {
 
 function initBlinker() {
     let mid_x = floor(N / 2);
-    let mid_y = floor(N / 2);
+    let mid_y = floor(M / 2);
 
     stateArray[mid_x + 2][mid_y - 1] = 1;
     stateArray[mid_x + 2][mid_y] = 1;
@@ -194,7 +182,7 @@ function initBlinker() {
 
 function initPulsar() {
     let mid_x = floor(N / 2);
-    let mid_y = floor(N / 2);
+    let mid_y = floor(M / 2);
 
     stateArray[mid_x - 1][mid_y - 2] = 1;
     stateArray[mid_x][mid_y - 2] = 1;
@@ -223,7 +211,7 @@ function initPulsar() {
 
 function initBlank() {
     for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
+        for (let j = 0; j < M; j++) {
             stateArray[i][j] = 0;
         }
     }

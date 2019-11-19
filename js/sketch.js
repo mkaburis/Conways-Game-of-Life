@@ -1,5 +1,6 @@
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = 756; 
+const OPERATION_TIME = 750;
 let unit_Arr = [9, 18, 27, 36, 54];
 let N_Arr = [120, 60, 40, 30, 20]
 let M_Arr = [84, 42, 28, 21, 14]
@@ -14,17 +15,14 @@ let isRunning = false;
 function setup() {
     canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     canvas.parent('canvas-container')
+    documentReady(); // initialize DOM events
     resetGrid();
-
 }
 
 function resetGrid() {
     stateArray = createArray(N, M);
     nextArray = createArray(N, M);
-
-    documentReady();
-
-    initRandom();
+    initBlank();
 }
 
 function draw() {
@@ -95,7 +93,7 @@ function documentReady() {
     startBtn.addEventListener('click', () => {
         isRunning = true;
 
-        interval = setInterval(automataCore, 1000)
+        interval = setInterval(automataCore, OPERATION_TIME);
     })
 
     stopBtn.addEventListener('click', () => {
@@ -109,8 +107,9 @@ function documentReady() {
 
     gridRange.addEventListener('change', () =>{
         isRunning = false;
+        document.getElementById('generation').innerText = 0;
         let input = parseInt(document.getElementById('gridRange').value);
-        console.log(input)
+        listOfConfigs.selectedIndex = 0;
         UNIT = unit_Arr[input];
         N = N_Arr[input];
         M = M_Arr[input];
