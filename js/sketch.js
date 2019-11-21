@@ -61,7 +61,13 @@ function mousePressed() {
     x_box = floor(mouseX / UNIT);
     y_box = floor(mouseY / UNIT);
 
-    stateArray[x_box][y_box] = 1;
+    if(stateArray[x_box][y_box] == 1)
+    {
+        stateArray[x_box][y_box] = 0;
+    }
+    else{
+        stateArray[x_box][y_box] = 1;
+    }
 }
 
 
