@@ -181,32 +181,66 @@ function initBlinker() {
 }
 
 function initPulsar() {
-    let mid_x = floor(N / 2);
-    let mid_y = floor(M / 2);
+    let x = floor(N / 2);
+    let y = floor(M / 2);
+    
+    stateArray[x - 6][y + 2] = 1;
+    stateArray[x - 6][y + 3] = 1;
+    stateArray[x - 6][y + 4] = 1;
+    stateArray[x - 6][y - 2] = 1;
+    stateArray[x - 6][y - 3] = 1;
+    stateArray[x - 6][y - 4] = 1;
 
-    stateArray[mid_x - 1][mid_y - 2] = 1;
-    stateArray[mid_x][mid_y - 2] = 1;
-    stateArray[mid_x + 1][mid_y - 2] = 1;
+    stateArray[x - 4][y + 1] = 1;
+    stateArray[x - 4][y + 6] = 1;
+    stateArray[x - 4][y - 1] = 1;
+    stateArray[x - 4][y - 6] = 1;
 
-    stateArray[mid_x - 2][mid_y - 1] = 1;
-    stateArray[mid_x][mid_y - 1] = 1;
-    stateArray[mid_x + 2][mid_y - 1] = 1;
+    stateArray[x - 3][y + 1] = 1;
+    stateArray[x - 3][y + 6] = 1;
+    stateArray[x - 3][y - 1] = 1;
+    stateArray[x - 3][y - 6] = 1;
 
-    stateArray[mid_x - 3][mid_y] = 1;
-    stateArray[mid_x - 2][mid_y] = 1;
-    stateArray[mid_x - 1][mid_y] = 1;
-    stateArray[mid_x + 1][mid_y] = 1;
-    stateArray[mid_x + 2][mid_y] = 1;
+    stateArray[x - 2][y + 1] = 1;
+    stateArray[x - 2][y + 6] = 1;
+    stateArray[x - 2][y - 1] = 1;
+    stateArray[x - 2][y - 6] = 1;
 
-    stateArray[mid_x - 3][mid_y + 1] = 1;
-    stateArray[mid_x][mid_y + 1] = 1;
-    stateArray[mid_x + 2][mid_y + 1] = 1;
+    stateArray[x - 1][y + 2] = 1;
+    stateArray[x - 1][y + 3] = 1;
+    stateArray[x - 1][y + 4] = 1;
+    stateArray[x - 1][y - 2] = 1;
+    stateArray[x - 1][y - 3] = 1;
+    stateArray[x - 1][y - 4] = 1;
 
-    stateArray[mid_x][mid_y + 2] = 1;
-    stateArray[mid_x + 1][mid_y + 2] = 1;
+    stateArray[x + 6][y + 2] = 1;
+    stateArray[x + 6][y + 3] = 1;
+    stateArray[x + 6][y + 4] = 1;
+    stateArray[x + 6][y - 2] = 1;
+    stateArray[x + 6][y - 3] = 1;
+    stateArray[x + 6][y - 4] = 1;
 
-    stateArray[mid_x - 1][mid_y + 3] = 1;
-    stateArray[mid_x][mid_y + 3] = 1;
+    stateArray[x + 4][y + 1] = 1;
+    stateArray[x + 4][y + 6] = 1;
+    stateArray[x + 4][y - 1] = 1;
+    stateArray[x + 4][y - 6] = 1;
+
+    stateArray[x + 3][y + 1] = 1;
+    stateArray[x + 3][y + 6] = 1;
+    stateArray[x + 3][y - 1] = 1;
+    stateArray[x + 3][y - 6] = 1;
+
+    stateArray[x + 2][y + 1] = 1;
+    stateArray[x + 2][y + 6] = 1;
+    stateArray[x + 2][y - 1] = 1;
+    stateArray[x + 2][y - 6] = 1;
+
+    stateArray[x + 1][y + 2] = 1;
+    stateArray[x + 1][y + 3] = 1;
+    stateArray[x + 1][y + 4] = 1;
+    stateArray[x + 1][y - 2] = 1;
+    stateArray[x + 1][y - 3] = 1;
+    stateArray[x + 1][y - 4] = 1;
 }
 
 function initBlank() {
