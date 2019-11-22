@@ -243,6 +243,66 @@ function initPulsar() {
     stateArray[x + 1][y - 4] = 1;
 }
 
+function initGliderGun()
+{
+    let x = floor(N / 2);
+    let y = floor(M / 2);
+
+    stateArray[x - 17][y] = 1;
+    stateArray[x - 17][y + 1] = 1;
+
+    stateArray[x - 16][y] = 1;
+    stateArray[x - 16][y + 1] = 1;
+
+    stateArray[x - 7][y] = 1;
+    stateArray[x - 7][y + 1] = 1;
+    stateArray[x - 7][y + 2] = 1;
+    
+    stateArray[x - 6][y - 1] = 1;
+    stateArray[x - 6][y + 3] = 1;
+
+    stateArray[x - 5][y - 2] = 1;
+    stateArray[x - 5][y + 4] = 1;
+
+    stateArray[x - 4][y - 2] = 1;
+    stateArray[x - 4][y + 4] = 1;
+
+    stateArray[x - 3][y + 1] = 1;
+
+    stateArray[x - 2][y - 1] = 1;
+    stateArray[x - 2][y + 3] = 1;
+
+    stateArray[x - 1][y] = 1;
+    stateArray[x - 1][y + 1] = 1;
+    stateArray[x - 1][y + 2] = 1;
+
+    stateArray[x][y + 1] = 1;
+
+    stateArray[x + 3][y] = 1;
+    stateArray[x + 3][y - 1] = 1;
+    stateArray[x + 3][y - 2] = 1;
+
+    stateArray[x + 4][y] = 1;
+    stateArray[x + 4][y - 1] = 1;
+    stateArray[x + 4][y - 2] = 1;
+
+    stateArray[x + 5][y - 3] = 1;
+    stateArray[x + 5][y + 1] = 1;
+
+    stateArray[x + 7][y - 3] = 1;
+    stateArray[x + 7][y - 4] = 1;
+    stateArray[x + 7][y + 1] = 1;
+    stateArray[x + 7][y + 2] = 1;
+
+    stateArray[x + 17][y - 1] = 1;
+    stateArray[x + 17][y - 2] = 1;
+
+    stateArray[x + 18][y - 1] = 1;
+    stateArray[x + 18][y - 2] = 1;
+
+
+}
+
 function initBlank() {
     for (let i = 0; i < N; i++) {
         for (let j = 0; j < M; j++) {
