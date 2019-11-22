@@ -85,6 +85,7 @@ function documentReady() {
         'Random': initRandom,
         'SpaceShip': initSpaceship,
         'Blinker': initBlinker,
+        'GliderGun': initGliderGun,
         'Pulsar': initPulsar
     }
 
