@@ -71,8 +71,6 @@ function mousePressed() {
 }
 
 
-
-
 function documentReady() {
     let startBtn = document.getElementById('startBtn');
     let stopBtn = document.getElementById('stopBtn');

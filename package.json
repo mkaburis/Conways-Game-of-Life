@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^7.1.1"
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.1.0"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
